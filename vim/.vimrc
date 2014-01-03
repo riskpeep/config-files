@@ -5,16 +5,8 @@ set nocompatible
 "Setup vundle
 filetype off
 
-let devMode='clojure'
-
-"Ubuntu
-if has("unix")
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
-elseif has("win32")
-  set rtp+=%HOME%/vimfiles/bundle/vundle/
-  call vundle#rc('$HOME/vimfiles/bundle')
-endif
+set rtp+=$HOME/vimfiles/bundle/vundle/
+call vundle#rc('$HOME/vimfiles/bundle/')
 
 " Let Vundle manage Vundle
 " required!
@@ -26,8 +18,7 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-sensible'
 Bundle 'Syntastic'
 Bundle 'snipMate'
-"Bundle 'Solarized'
-Bundle 'altercation/vim-colors-solarized'
+Bundle 'Solarized'
 Bundle 'guns/vim-clojure-static'
 Bundle 'tpope/vim-classpath'
 Bundle 'tpope/vim-fireplace'
@@ -241,7 +232,7 @@ au BufNewFile,BufRead *.asd set filetype=lisp
 set ttymouse=xterm2
 
 "tell the term has 256 colors
-"set t_Co=256
+set t_Co=256
 
 "hide buffers when not displayed
 set hidden
@@ -319,27 +310,24 @@ function! s:HighlightLongLines(width)
 endfunction
 
 "setup slimv
-if devMode ==? 'clojure'
-elseif devMode ==? 'lisp'
-        let g:lisp_rainbow = 1
-        let g:slimv_repl_syntax = 1
-	let g:slimv_lisp = '/usr/local/acl82.64/mlisp'
-	"let g:slimv_swank_cmd = 'xterm -iconic -e /usr/local/acl82.64/mlisp -L /home/rskerr/.vim/slime/start-swank.lisp'
-	"let g:slimv_swank_cmd = '! /usr/local/acl82.64/mlisp -L /home/rskerr/.vim/slime/start-swank.lisp &'
-	let g:slimv_impl = 'allegro'
-	"let g:slimv_swank_cmd = '! xterm -e /usr/local/acl90.64/alisp --load /usr/share/vim/vimfiles/kovisoft-slimv-db6bf27ad179/slime/swank-loader.lisp &'
-	"turn off that paredit crap.  All bussed.
-	let g:paredit_mode = 0
-endif
+"let g:lisp_rainbow = 1
+"et g:slimv_repl_syntax = 1
+"et g:slimv_lisp = '/usr/local/acl82.64/mlisp'
+""let g:slimv_swank_cmd = 'xterm -iconic -e /usr/local/acl82.64/mlisp -L /home/rskerr/.vim/slime/start-swank.lisp'
+""let g:slimv_swank_cmd = '! /usr/local/acl82.64/mlisp -L /home/rskerr/.vim/slime/start-swank.lisp &'
+"let g:slimv_impl = 'allegro'
+""let g:slimv_swank_cmd = '! xterm -e /usr/local/acl90.64/alisp --load /usr/share/vim/vimfiles/kovisoft-slimv-db6bf27ad179/slime/swank-loader.lisp &'
+""turn off that paredit crap.  All bussed.
+"let g:paredit_mode = 0
 
 
 
 "setup theme
-"set t_Co=256
-"let g:solarized_termcolors=256
-colorscheme solarized
-set background=dark
+"set t_Co=16
 syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
 
 if has("gui_running")
   if has("gui_gtk2")
