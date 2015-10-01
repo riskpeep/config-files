@@ -5,16 +5,8 @@ set nocompatible
 "Setup vundle
 filetype off
 
-let devMode='python'
-
-"Ubuntu
-if has("unix")
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
-elseif has("win32")
-  set rtp+=%HOME%/vimfiles/bundle/vundle/
-  call vundle#rc('$HOME/vimfiles/bundle')
-endif
+set rtp+=$VIM/vimfiles/bundle/vundle/
+call vundle#rc('$VIM/vimfiles/bundle/')
 
 " Let Vundle manage Vundle
 " required!
@@ -22,59 +14,17 @@ Bundle 'gmarik/vundle'
 
 " My bundles here:
 "
-" Original repos on GitHub
+" original repos on GitHub
 Bundle 'tpope/vim-sensible'
 Bundle 'Syntastic'
 Bundle 'snipMate'
-"Bundle 'Solarized'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'bling/vim-airline'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-fugitive'
-"JS
-Bundle 'burnettk/vim-angular'
-"Python
-Bundle 'klen/python-mode'
-"Clojure
+Bundle 'Solarized'
 Bundle 'guns/vim-clojure-static'
 Bundle 'tpope/vim-classpath'
 Bundle 'tpope/vim-fireplace'
-"Lisp
+Bundle 'tomasr/molokai'
+Bundle 'flazz/vim-colorschemes'
 Bundle 'slimv.vim'
-
-" Configure airline
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-
-" Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
-
-" Better copy & paste
-set clipboard=unnamed
 
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -92,47 +42,47 @@ set nowrap      "dont wrap lines
 set linebreak   "wrap lines at convenient points
 
 "statusline setup
-"set statusline=%f       "tail of the filename
+set statusline=%f       "tail of the filename
 
 "display a warning if fileformat isnt unix
-"set statusline+=%#warningmsg#
-"set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-"set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+set statusline+=%*
 
 "display a warning if file encoding isnt utf-8
-"set statusline+=%#warningmsg#
-"set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
-"set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
+set statusline+=%*
 
-"set statusline+=%h      "help file flag
-"set statusline+=%y      "filetype
-"set statusline+=%r      "read only flag
-"set statusline+=%m      "modified flag
+set statusline+=%h      "help file flag
+set statusline+=%y      "filetype
+set statusline+=%r      "read only flag
+set statusline+=%m      "modified flag
 
 "display a warning if &et is wrong, or we have mixed-indenting
-"set statusline+=%#error#
-"set statusline+=%{StatuslineTabWarning()}
-"set statusline+=%*
+set statusline+=%#error#
+set statusline+=%{StatuslineTabWarning()}
+set statusline+=%*
 
-"set statusline+=%{StatuslineTrailingSpaceWarning()}
+set statusline+=%{StatuslineTrailingSpaceWarning()}
 
-"set statusline+=%{StatuslineLongLineWarning()}
+set statusline+=%{StatuslineLongLineWarning()}
 
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 "display a warning if &paste is set
-"set statusline+=%#error#
-"set statusline+=%{&paste?'[paste]':''}
-"set statusline+=%*
+set statusline+=%#error#
+set statusline+=%{&paste?'[paste]':''}
+set statusline+=%*
 
-"set statusline+=%=      "left/right separator
-"set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
-"set statusline+=%c,     "cursor column
-"set statusline+=%l/%L   "cursor line/total lines
-"set statusline+=\ %P    "percent through file
-"set laststatus=2
+set statusline+=%=      "left/right separator
+set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+set laststatus=2
 
 "recalculate the trailing whitespace warning when idle, and after saving
 autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
@@ -248,8 +198,8 @@ set expandtab
 set autoindent
 
 "folding settings
-"set foldmethod=indent   "fold based on indent
-"set foldnestmax=3       "deepest fold is 3 levels
+set foldmethod=indent   "fold based on indent
+set foldnestmax=3       "deepest fold is 3 levels
 set nofoldenable        "dont fold by default
 
 set wildmode=list:longest   "make cmdline tab completion similar to bash
@@ -284,7 +234,7 @@ au BufNewFile,BufRead *.asd set filetype=lisp
 set ttymouse=xterm2
 
 "tell the term has 256 colors
-"set t_Co=256
+set t_Co=256
 
 "hide buffers when not displayed
 set hidden
@@ -297,18 +247,6 @@ endif
 "make <c-l> clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
 inoremap <C-L> <C-O>:nohls<CR>
-
-"make F1 work sanely
-inoremap <F1> <Esc>
-noremap <F1> :call MapF1()<CR>
-
-function! MapF1()
-    if &buftype == "help"
-        exec 'quit'
-    else
-        exec 'help'
-    endif
-endfunction
 
 "map to bufexplorer
 "nnoremap <C-B> :BufExplorer<cr>
@@ -374,32 +312,27 @@ function! s:HighlightLongLines(width)
 endfunction
 
 "setup slimv
-if devMode ==? 'clojure'
-elseif devMode ==? 'lisp'
-        let g:lisp_rainbow = 1
-        let g:slimv_repl_syntax = 1
-	"let g:slimv_lisp = '/home/rskerr/dev/carbon/Carbon/trunk/Lisp/acl82.64-CEA/acl82.64-CEA'
-	"let g:slimv_lisp = '/usr/local/acl82.64/mlisp'
-	let g:slimv_lisp = '/usr/local/acl90.64/mlisp'
-	"let g:slimv_swank_cmd = 'xterm -iconic -e /usr/local/acl82.64/mlisp -L /home/rskerr/.vim/slime/start-swank.lisp'
-	"let g:slimv_swank_cmd = '! /usr/local/acl82.64/mlisp -L /home/rskerr/.vim/slime/start-swank.lisp &'
-	let g:slimv_impl = 'allegro'
-	let g:slimv_lisp = '/usr/local/acl90.64/mlisp'
-	"let g:slimv_swank_cmd = '! xterm -e /usr/local/acl90.64/alisp --load /usr/share/vim/vimfiles/kovisoft-slimv-db6bf27ad179/slime/swank-loader.lisp &'
-	"let g:slimv_swank_cmd = '! xterm -e /home/rskerr/dev/carbon/Carbon/trunk/Lisp/acl82.64-CEA/acl82.64-CEA -L /home/rskerr/.vim/bundle/slimv.vim/slime/start-swank.lisp &'
-	"turn off that paredit crap.  All bussed.
-	let g:paredit_mode = 0
-endif
+let g:lisp_rainbow = 1
+"et g:slimv_repl_syntax = 1
+"et g:slimv_lisp = '/usr/local/acl82.64/mlisp'
+""let g:slimv_swank_cmd = 'xterm -iconic -e /usr/local/acl82.64/mlisp -L /home/rskerr/.vim/slime/start-swank.lisp'
+""let g:slimv_swank_cmd = '! /usr/local/acl82.64/mlisp -L /home/rskerr/.vim/slime/start-swank.lisp &'
+"let g:slimv_impl = 'allegro'
+""let g:slimv_swank_cmd = '! xterm -e /usr/local/acl90.64/alisp --load /usr/share/vim/vimfiles/kovisoft-slimv-db6bf27ad179/slime/swank-loader.lisp &'
+let g:slimv_impl = 'sbcl'
+""turn off that paredit crap.  All bussed.
+"let g:paredit_mode = 0
 
 
 
 "setup theme
-"set t_Co=256
+"set t_Co=16
+"syntax enable
+"set background=dark
 "let g:solarized_termcolors=256
-"let g:solarized_contrast="high"
-colorscheme solarized
-set background=dark
-syntax enable
+"let g:molokai_original=1
+"colorscheme molokai
+"colorscheme tesla
 
 if has("gui_running")
   if has("gui_gtk2")
@@ -407,9 +340,40 @@ if has("gui_running")
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
   elseif has("gui_win32")
+    colorscheme tesla
     set guifont=Consolas:h11:cANSI
   endif
 endif
 
 set lines=50 columns=100
 
+"setup ctags
+set tags=~/tags
+
+function! DelTagOfFile(file)
+    let fullpath = a:file
+    let cwd = getcwd()
+"    let tagfilename = cwd . "/tags"
+    let tagfilename = "~/tags"
+    let f = substitute(fullpath, cwd . "/", "", "")
+    let f = escape(f, './')
+    let cmd = 'sed -i "/' . f . '/d" "' . tagfilename . '"'
+    let resp = system(cmd)
+endfunction
+
+function! UpdateTags()
+    let f = expand("%:p")
+"    let cwd = getcwd()
+    let tagfilename = "~/tags"
+"    let tagfilename = cwd . "/tags"
+"    let cmd = 'ctags -a -f ' . tagfilename . ' --c++-kinds=+p --fields=+iaS --extra=+q ' . '"' . f . '"'
+    let cmd = 'ctags -a -f ' . tagfilename . ' --lisp-kinds=+f --fields=+iaS --extra=+q --file-scope=no ' . '"' . f . '"'
+"    let cmd = 'ctags -a -u -o ' . tagfilename . ' "' . f . '"'
+"    echo cmd
+    call DelTagOfFile(f)
+    let resp = system(cmd)
+endfunction
+autocmd BufWritePost *.lisp,*.cl call UpdateTags()
+
+"let g:syntastic_debug = 1
+let g:syntastic_lisp_checkers = ['sbcl']
