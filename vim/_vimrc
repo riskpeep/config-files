@@ -2,29 +2,52 @@
 "This must be first, because it changes other options as a side effect.
 set nocompatible
 
-"Setup vundle
-filetype off
+"Setup plug
+call plug#begin('c:\users\rskerr\vimfiles\bundle')
 
-set rtp+=$VIM/vimfiles/bundle/vundle/
-call vundle#rc('$VIM/vimfiles/bundle/')
-
-" Let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-" My bundles here:
+" Make sure you use single quotes
 "
-" original repos on GitHub
-Bundle 'tpope/vim-sensible'
-Bundle 'Syntastic'
-Bundle 'snipMate'
-Bundle 'Solarized'
-Bundle 'guns/vim-clojure-static'
-Bundle 'tpope/vim-classpath'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tomasr/molokai'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'slimv.vim'
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+"Plug 'junegunn/vim-easy-align'
+"
+"" Any valid git URL is allowed
+"Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+"
+"" Multiple Plug commands can be written in a single line using | separators
+"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+"
+"" On-demand loading
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+"
+"" Using a non-master branch
+"Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+"
+"" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+"Plug 'fatih/vim-go', { 'tag': '*' }
+"
+""   " Plugin options
+" 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+"
+"" Plugin outside 'c:\users\rskerr\plugged with post-update hook
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"
+"" Unmanaged plugin (manually installed and updated)
+"Plug '~/my-prototype-plugin'
+
+Plug 'tpope/vim-sensible'
+Plug 'vim-syntastic/syntastic'
+Plug 'vim-scripts/snipMate'
+Plug 'altercation/Solarized'
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'tpope/vim-classpath', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'tomasr/molokai'
+Plug 'flazz/vim-colorschemes'
+Plug 'kovisoft/slimv', { 'for': 'lisp' }
+
+" Initialize plugin system
+call plug#end()
 
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -261,19 +284,19 @@ noremap Q gq
 nnoremap Y y$
 
 "snipmate setup
-"source ~/.vim/snippets/support_functions.vim
+"source ~/vimfiles/snippets/support_functions.vim
 autocmd vimenter * call s:SetupSnippets()
 function! s:SetupSnippets()
 
     "if we're in a rails env then read in the rails snippets
     if filereadable("./config/environment.rb")
-        call ExtractSnips("~/.vim/snippets/ruby-rails", "ruby")
-        call ExtractSnips("~/.vim/snippets/eruby-rails", "eruby")
+        call ExtractSnips("c:/users/rskerr/vimfiles/snippets/ruby-rails", "ruby")
+        call ExtractSnips("c:/users/rskerr/vimfiles/snippets/eruby-rails", "eruby")
     endif
 
-    call ExtractSnips("~/.vim/snippets/html", "eruby")
-    call ExtractSnips("~/.vim/snippets/html", "xhtml")
-    call ExtractSnips("~/.vim/snippets/html", "php")
+    call ExtractSnips("c:/users/rskerr/vimfiles/snippets/html", "eruby")
+    call ExtractSnips("c:/users/rskerr/vimfiles/snippets/html", "xhtml")
+    call ExtractSnips("c:/users/rskerr/vimfiles/snippets/html", "php")
 endfunction
 
 "visual search mappings
